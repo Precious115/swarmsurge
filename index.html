@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+<title>Swarm Surge — Emoji Survival Shooter</title>
+<meta name="description" content="Survive endless waves of emoji monsters, level up, and climb the leaderboard in Swarm Surge!" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="gameContainer">
+  <canvas id="game"></canvas>
+
+  <!-- ===================== HUD ===================== -->
+  <div id="hud">
+    <div id="hudStats">
+      <div id="hpBarWrap" class="bar-wrap"><div id="hpFill"></div><span id="hpText">100/100</span></div>
+      <div id="xpBarWrap" class="bar-wrap"><div id="xpFill"></div></div>
+      <div id="hudRow2">
+        <span id="levelText">Lv 1</span>
+        <span id="waveText">Wave 1</span>
+        <span id="timeText">0:00</span>
+      </div>
+    </div>
+    <div id="scoreWrap">
+      <div id="scoreText">0</div>
+    </div>
+  </div>
+  <div id="comboText">x1.0 COMBO</div>
+  <div id="bossWarning">⚠ BOSS INCOMING ⚠</div>
+
+  <div id="topRightBtns">
+    <button id="muteBtn" class="icon-btn">🔊</button>
+    <button id="pauseBtn" class="icon-btn">⏸️</button>
+  </div>
+
+  <!-- ===================== Virtual joystick (mobile) ===================== -->
+  <div id="joyZone">
+    <div id="joyBase"></div>
+    <div id="joyStick"></div>
+  </div>
+
+  <!-- ===================== START SCREEN ===================== -->
+  <div id="startScreen" class="screen">
+    <div class="panel">
+      <div class="emoji-row">🧑‍🚀👾🦇🐗👹</div>
+      <h1 class="game-title title-font">SWARM SURGE</h1>
+      <p class="game-subtitle">Auto-fire. Survive the swarm. Level up. Beat the boss. Top the board.</p>
+      <button id="playBtn" class="btn btn-primary">▶ PLAY</button>
+      <button id="viewLeaderboardBtn" class="btn btn-secondary">🏆 LEADERBOARD</button>
+      <p class="controls-hint">
+        📱 Mobile: drag the joystick (bottom-left) to move — you auto-fire at the nearest enemy.<br/>
+        💻 Desktop: WASD or Arrow Keys to move.
+      </p>
+    </div>
+  </div>
+
+  <!-- ===================== PAUSE SCREEN ===================== -->
+  <div id="pauseScreen" class="screen">
+    <div class="panel">
+      <h2 class="title-font">PAUSED</h2>
+      <button id="resumeBtn" class="btn btn-primary">▶ RESUME</button>
+      <button id="quitBtn" class="btn btn-secondary">⏹ QUIT TO MENU</button>
+    </div>
+  </div>
+
+  <!-- ===================== LEVEL UP SCREEN ===================== -->
+  <div id="levelUpScreen" class="screen">
+    <div class="panel">
+      <h2 class="title-font">⭐ LEVEL UP!</h2>
+      <p class="game-subtitle">Choose an upgrade</p>
+      <div id="upgradeChoices"></div>
+    </div>
+  </div>
+
+  <!-- ===================== GAME OVER SCREEN ===================== -->
+  <div id="gameOverScreen" class="screen">
+    <div class="panel">
+      <h2 class="title-font" style="color:var(--danger)">GAME OVER</h2>
+      <div id="newHighScoreBadge">🏆 NEW HIGH SCORE!</div>
+      <div class="stat-row"><span>Score</span><span class="val" id="finalScore">0</span></div>
+      <div class="stat-row"><span>Wave Reached</span><span class="val" id="finalWave">1</span></div>
+      <div id="nameEntryRow">
+        <input id="nameInput" maxlength="10" placeholder="YOUR NAME" />
+        <button id="submitScoreBtn" class="btn btn-primary" style="width:auto; margin-top:0;">SAVE</button>
+      </div>
+      <button id="restartBtn" class="btn btn-primary">🔁 PLAY AGAIN</button>
+      <button id="gameOverLeaderboardBtn" class="btn btn-secondary">🏆 LEADERBOARD</button>
+    </div>
+  </div>
+
+  <!-- ===================== LEADERBOARD SCREEN ===================== -->
+  <div id="leaderboardScreen" class="screen">
+    <div class="panel">
+      <h2 class="title-font">🏆 TOP SURVIVORS</h2>
+      <div id="leaderboardList"></div>
+      <button id="leaderboardBackBtn" class="btn btn-secondary">⬅ BACK</button>
+    </div>
+  </div>
+</div>
+
+<!--
+  ===================== SCRIPT LOAD ORDER =====================
+  Each file below is an independent module attached to its own
+  global (CFG, Utils, Assets, Sfx, Particles, Player, Enemies,
+  Upgrades, Leaderboard, UI, Input). Order matters only because
+  later files reference earlier globals — editing the INSIDE of
+  any one file does not require changing this list or any other
+  file. Assets.js loads real art with an automatic emoji fallback
+  if an image file is ever missing.
+-->
+<script src="js/config.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/assets.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/particles.js"></script>
+<script src="js/player.js"></script>
+<script src="js/enemies.js"></script>
+<script src="js/upgrades.js"></script>
+<script src="js/leaderboard.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/input.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
